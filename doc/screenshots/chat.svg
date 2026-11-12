@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="853" height="504" viewBox="0 0 853 504">
+<rect width="853" height="504" rx="8" fill="#1e222a"/>
+<circle cx="18" cy="17" r="6" fill="#ff5f56"/><circle cx="38" cy="17" r="6" fill="#ffbd2e"/><circle cx="58" cy="17" r="6" fill="#27c93f"/>
+<text x="426.5" y="21" fill="#8a93a3" font-family="sans-serif" font-size="12" text-anchor="middle">sts -c configs/sts.conf</text>
+<g font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" font-size="14" xml:space="preserve">
+<rect x="14.0" y="33" width="825.6" height="19" fill="#3b4252"/>
+<text x="22.6" y="48" fill="#e5e9f0" textLength="559.0" lengthAdjust="spacingAndGlyphs">#neotokyo - 4 people - broker.emqx.io:1883 - end-to-end encrypted</text>
+<text x="667.6" y="67" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="684.8" y="67" fill="#d8dee9" font-weight="bold" textLength="68.8" lengthAdjust="spacingAndGlyphs">4 people</text>
+<text x="667.6" y="86" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="684.8" y="86" fill="#c678dd" font-weight="bold" textLength="86.0" lengthAdjust="spacingAndGlyphs">ifupauline</text>
+<text x="667.6" y="105" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="684.8" y="105" fill="#56b6c2" textLength="34.4" lengthAdjust="spacingAndGlyphs">kira</text>
+<text x="667.6" y="124" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="684.8" y="124" fill="#7fdbe6" textLength="25.8" lengthAdjust="spacingAndGlyphs">max</text>
+<text x="667.6" y="143" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="684.8" y="143" fill="#e06c75" textLength="25.8" lengthAdjust="spacingAndGlyphs">sam</text>
+<text x="667.6" y="162" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="667.6" y="181" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="200" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="200" fill="#56b6c2" textLength="25.8" lengthAdjust="spacingAndGlyphs">-!-</text>
+<text x="100.0" y="200" fill="#d8dee9" textLength="172.0" lengthAdjust="spacingAndGlyphs">joining #neotokyo...</text>
+<text x="667.6" y="200" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="219" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="219" fill="#56b6c2" textLength="25.8" lengthAdjust="spacingAndGlyphs">-!-</text>
+<text x="100.0" y="219" fill="#d8dee9" textLength="430.0" lengthAdjust="spacingAndGlyphs">connected to broker.emqx.io:1883, joined #neotokyo</text>
+<text x="667.6" y="219" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="238" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="238" fill="#56b6c2" textLength="25.8" lengthAdjust="spacingAndGlyphs">-!-</text>
+<text x="100.0" y="238" fill="#56b6c2" textLength="34.4" lengthAdjust="spacingAndGlyphs">kira</text>
+<text x="143.0" y="238" fill="#d8dee9" textLength="395.6" lengthAdjust="spacingAndGlyphs">[E083 614B CA51 AD20] joined (first time seen)</text>
+<text x="667.6" y="238" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="257" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="257" fill="#56b6c2" textLength="25.8" lengthAdjust="spacingAndGlyphs">-!-</text>
+<text x="100.0" y="257" fill="#7fdbe6" textLength="25.8" lengthAdjust="spacingAndGlyphs">max</text>
+<text x="134.4" y="257" fill="#d8dee9" textLength="395.6" lengthAdjust="spacingAndGlyphs">[F126 6E4C 66AD 0B0C] joined (first time seen)</text>
+<text x="667.6" y="257" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="276" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="276" fill="#56b6c2" textLength="25.8" lengthAdjust="spacingAndGlyphs">-!-</text>
+<text x="100.0" y="276" fill="#e06c75" textLength="25.8" lengthAdjust="spacingAndGlyphs">sam</text>
+<text x="134.4" y="276" fill="#d8dee9" textLength="395.6" lengthAdjust="spacingAndGlyphs">[21C7 DBD6 5991 80B4] joined (first time seen)</text>
+<text x="667.6" y="276" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="295" fill="#d8dee9" textLength="60.2" lengthAdjust="spacingAndGlyphs">20:06 &lt;</text>
+<text x="74.2" y="295" fill="#56b6c2" textLength="34.4" lengthAdjust="spacingAndGlyphs">kira</text>
+<text x="108.6" y="295" fill="#d8dee9" textLength="352.6" lengthAdjust="spacingAndGlyphs">&gt; hi everyone! is this the neotokyo room?</text>
+<text x="667.6" y="295" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="314" fill="#d8dee9" textLength="60.2" lengthAdjust="spacingAndGlyphs">20:06 &lt;</text>
+<text x="74.2" y="314" fill="#c678dd" textLength="86.0" lengthAdjust="spacingAndGlyphs">ifupauline</text>
+<text x="160.2" y="314" fill="#d8dee9" textLength="189.2" lengthAdjust="spacingAndGlyphs">&gt; yes, welcome kira :)</text>
+<text x="667.6" y="314" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="333" fill="#d8dee9" textLength="60.2" lengthAdjust="spacingAndGlyphs">20:06 &lt;</text>
+<text x="74.2" y="333" fill="#7fdbe6" textLength="25.8" lengthAdjust="spacingAndGlyphs">max</text>
+<text x="100.0" y="333" fill="#d8dee9" textLength="447.2" lengthAdjust="spacingAndGlyphs">&gt; welcome! the broker only sees encrypted blobs here</text>
+<text x="667.6" y="333" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="352" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="74.2" y="352" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">*</text>
+<text x="91.4" y="352" fill="#e06c75" textLength="25.8" lengthAdjust="spacingAndGlyphs">sam</text>
+<text x="125.8" y="352" fill="#d8dee9" textLength="172.0" lengthAdjust="spacingAndGlyphs">waves from the train</text>
+<text x="667.6" y="352" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="371" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="371" fill="#e09cff" font-weight="bold" textLength="77.4" lengthAdjust="spacingAndGlyphs">(private)</text>
+<text x="151.6" y="371" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">&lt;</text>
+<text x="160.2" y="371" fill="#56b6c2" textLength="34.4" lengthAdjust="spacingAndGlyphs">kira</text>
+<text x="194.6" y="371" fill="#d8dee9" textLength="318.2" lengthAdjust="spacingAndGlyphs">&gt; can you check my fingerprint later?</text>
+<text x="667.6" y="371" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="390" fill="#d8dee9" textLength="60.2" lengthAdjust="spacingAndGlyphs">20:06 &lt;</text>
+<text x="74.2" y="390" fill="#e06c75" textLength="25.8" lengthAdjust="spacingAndGlyphs">sam</text>
+<text x="100.0" y="390" fill="#d8dee9" textLength="404.2" lengthAdjust="spacingAndGlyphs">&gt; ifupauline: the build is green on all jobs :)</text>
+<text x="667.6" y="390" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="409" fill="#d8dee9" textLength="60.2" lengthAdjust="spacingAndGlyphs">20:06 &lt;</text>
+<text x="74.2" y="409" fill="#c678dd" textLength="86.0" lengthAdjust="spacingAndGlyphs">ifupauline</text>
+<text x="160.2" y="409" fill="#d8dee9" textLength="206.4" lengthAdjust="spacingAndGlyphs">&gt; great news, thanks sam</text>
+<text x="667.6" y="409" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="14.0" y="428" fill="#d8dee9" textLength="43.0" lengthAdjust="spacingAndGlyphs">20:06</text>
+<text x="65.6" y="428" fill="#56b6c2" textLength="25.8" lengthAdjust="spacingAndGlyphs">-!-</text>
+<text x="100.0" y="428" fill="#56b6c2" textLength="34.4" lengthAdjust="spacingAndGlyphs">kira</text>
+<text x="143.0" y="428" fill="#d8dee9" textLength="146.2" lengthAdjust="spacingAndGlyphs">wants to send you</text>
+<text x="297.8" y="428" fill="#d8dee9" font-weight="bold" textLength="137.6" lengthAdjust="spacingAndGlyphs">neotokyo-map.png</text>
+<text x="444.0" y="428" fill="#d8dee9" textLength="94.6" lengthAdjust="spacingAndGlyphs">(234.4 KB):</text>
+<text x="547.2" y="428" fill="#d8dee9" font-weight="bold" textLength="77.4" lengthAdjust="spacingAndGlyphs">/accept 1</text>
+<text x="633.2" y="428" fill="#d8dee9" textLength="17.2" lengthAdjust="spacingAndGlyphs">or</text>
+<text x="667.6" y="428" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<text x="65.6" y="447" fill="#d8dee9" textLength="77.4" lengthAdjust="spacingAndGlyphs">/refuse 1</text>
+<text x="667.6" y="447" fill="#d8dee9" textLength="8.6" lengthAdjust="spacingAndGlyphs">│</text>
+<rect x="14.0" y="451" width="68.8" height="19" fill="#3b4252"/>
+<text x="22.6" y="466" fill="#e5e9f0" textLength="60.2" lengthAdjust="spacingAndGlyphs">20:06 [</text>
+<rect x="82.8" y="451" width="86.0" height="19" fill="#3b4252"/>
+<text x="82.8" y="466" fill="#e5e9f0" textLength="86.0" lengthAdjust="spacingAndGlyphs">ifupauline</text>
+<rect x="168.8" y="451" width="68.8" height="19" fill="#3b4252"/>
+<text x="168.8" y="466" fill="#e5e9f0" textLength="60.2" lengthAdjust="spacingAndGlyphs">] 1:sts</text>
+<rect x="237.6" y="451" width="94.6" height="19" fill="#3b4252"/>
+<text x="237.6" y="466" fill="#e5e9f0" font-weight="bold" textLength="94.6" lengthAdjust="spacingAndGlyphs">2:#neotokyo</text>
+<rect x="332.2" y="451" width="8.6" height="19" fill="#3b4252"/>
+<rect x="340.8" y="451" width="77.4" height="19" fill="#3b4252"/>
+<text x="340.8" y="466" fill="#e5e9f0" textLength="77.4" lengthAdjust="spacingAndGlyphs">3:#lab(1)</text>
+<rect x="418.2" y="451" width="421.4" height="19" fill="#3b4252"/>
+<text x="435.4" y="466" fill="#e5e9f0" textLength="94.6" lengthAdjust="spacingAndGlyphs">| connected</text>
+<text x="14.0" y="485" fill="#d8dee9" textLength="94.6" lengthAdjust="spacingAndGlyphs">[#neotokyo]</text>
+<rect x="117.2" y="471" width="8.6" height="17" fill="#d8dee9" opacity="0.7"/>
+</g></svg>

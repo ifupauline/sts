@@ -1,0 +1,59 @@
+name: release
+
+# Pushing a tag v1.2.3 builds sts and publishes the release, with the notes
+# of that version in CHANGELOG.md.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    # the oldest supported runner: the binary then runs on older systems too
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake mosquitto openssl python3-pyte
+          sudo install -m 755 /usr/sbin/mosquitto /usr/local/bin/mosquitto
+
+      - name: Check the version
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          grep -q "VERSION $v\$" CMakeLists.txt || {
+            echo "CMakeLists.txt doesn't say VERSION $v"; exit 1; }
+          grep -q "\"sts $v\"" doc/sts.1 || {
+            echo "doc/sts.1 doesn't say sts $v"; exit 1; }
+          grep -q "^## $v " CHANGELOG.md || {
+            echo "CHANGELOG.md has no section for $v"; exit 1; }
+
+      - name: Build and test
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSTS_WERROR=ON \
+            -DMOSQUITTO=/usr/local/bin/mosquitto
+          cmake --build build -j
+          cd build && ctest --output-on-failure
+
+      - name: Package
+        run: |
+          name="sts-${GITHUB_REF_NAME#v}-linux-x86_64"
+          cmake --install build --prefix "$name" --strip
+          tar -czf "$name.tar.gz" "$name"
+          sha256sum "$name.tar.gz" > "$name.tar.gz.sha256"
+          v="${GITHUB_REF_NAME#v}"
+          awk -v v="$v" '$1 == "##" { if (on) exit; on = ($2 == v) }
+                         on' CHANGELOG.md | tail -n +2 > notes.md
+          echo "name=$name" >> "$GITHUB_ENV"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "sts ${GITHUB_REF_NAME#v}" --notes-file notes.md \
+            "$name.tar.gz" "$name.tar.gz.sha256"

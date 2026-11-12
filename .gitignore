@@ -1,0 +1,26 @@
+# build directories (make, make asan)
+build/
+build-*/
+
+# left behind by an in-source `cmake .`, which is refused
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+compile_commands.json
+
+# editors
+tags
+*.swp
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+
+# fuzzing (make fuzz)
+crash-*
+leak-*
+timeout-*
+oom-*

@@ -1,0 +1,95 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "23 3 * * 1"        # Mondays: a longer fuzzing run
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: gcc
+            cc: gcc
+            flags: ""
+          - name: clang
+            cc: clang
+            flags: ""
+          - name: gcc-asan-ubsan
+            cc: gcc
+            flags: "-DSTS_SANITIZE=ON -DCMAKE_BUILD_TYPE=Debug"
+    name: linux-${{ matrix.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake clang mosquitto openssl python3-pyte
+          # AppArmor keeps /usr/sbin/mosquitto to /etc/mosquitto: the
+          # tests run a copy with their own configuration files
+          sudo install -m 755 /usr/sbin/mosquitto /usr/local/bin/mosquitto
+
+      - name: Configure
+        env:
+          CC: ${{ matrix.cc }}
+        run: >-
+          cmake -S . -B build -DSTS_WERROR=ON
+          -DMOSQUITTO=/usr/local/bin/mosquitto ${{ matrix.flags }}
+
+      - name: Build
+        run: cmake --build build -j
+
+      - name: Test
+        run: cd build && ctest --output-on-failure
+
+      - name: Install
+        run: |
+          cmake --install build --prefix "$RUNNER_TEMP/inst"
+          "$RUNNER_TEMP/inst/bin/sts" --version
+          test -f "$RUNNER_TEMP/inst/share/man/man1/sts.1"
+          test -f "$RUNNER_TEMP/inst/share/doc/sts/configs/sts.conf"
+
+  fuzz:
+    runs-on: ubuntu-latest
+    env:
+      # two minutes per target on each push, twenty once a week
+      FUZZ_SECS: ${{ github.event_name == 'schedule' && 1200 || 120 }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake clang
+
+      # what the fuzzers learnt in earlier runs
+      - uses: actions/cache@v4
+        with:
+          path: build-fuzz/corpus-*
+          key: fuzz-corpus-${{ github.run_id }}
+          restore-keys: fuzz-corpus-
+
+      - name: Fuzz
+        run: make fuzz FUZZ_SECS="$FUZZ_SECS"
+
+      - name: Keep what crashed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-crashes
+          path: |
+            crash-*
+            leak-*
+            timeout-*
+            oom-*
+          if-no-files-found: ignore

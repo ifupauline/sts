@@ -1,0 +1,14 @@
+sts - end-to-end encrypted chat over MQTT
+Copyright 2021-2026 ifupauline
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product includes third-party software in vendor/, each under its own
+license:
+
+- Mbed TLS (vendor/mbedtls), Copyright The Mbed TLS Contributors,
+  Apache License 2.0 (vendor/mbedtls/LICENSE).
+- Eclipse Paho MQTT embedded C, MQTTPacket (vendor/paho-mqtt), Copyright
+  IBM Corp. and others, Eclipse Distribution License 1.0 (BSD-3-Clause,
+  vendor/paho-mqtt/edl-v10), dual licensed with the Eclipse Public
+  License 2.0 (vendor/paho-mqtt/epl-v20).

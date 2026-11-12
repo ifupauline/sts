@@ -1,0 +1,309 @@
+.\" SPDX-License-Identifier: Apache-2.0
+.TH STS 1 "November 2026" "sts 3.0.1" "User Commands"
+.SH NAME
+sts \- the Secure Talk System, end-to-end encrypted chat over MQTT
+.SH SYNOPSIS
+.B sts \-c
+.I FILE
+.br
+.B sts \-b
+.I HOST
+.B \-p
+.I PORT
+.RI [ options ]
+.br
+.B sts \-\-init
+.br
+.B sts \-\-passphrase
+.I FILE
+.SH DESCRIPTION
+.B sts
+is an IRC style group chat for the terminal. People who use the same MQTT
+broker, the same topic prefix and the same room name (and password, if
+any) are in the same room. Messages and files are encrypted and signed on
+each computer: the broker, even a public one, only passes on data it
+cannot read.
+.PP
+Settings come either all from a configuration
+.IR FILE ,
+or all from the command line; the two can't be mixed. With
+.BR \-b " and " \-p ,
+the other settings have defaults: nick = your login name, topic prefix
+.BR sts ,
+identity
+.BR ~/.sts/identity.key ,
+known peers
+.BR ~/.sts/known_peers .
+.PP
+On a terminal,
+.B sts
+shows a full screen interface: messages on the left, the people of the
+room on the right, a status bar and an input line. Otherwise (or with
+.BR \-\-plain )
+it prints one line per event and reads commands line by line, for
+scripts.
+.SH OPTIONS
+.TP
+.BR \-c ", " \-\-config " \fIFILE\fR"
+Read every setting from
+.IR FILE .
+No other option is accepted.
+.TP
+.BR \-b ", " \-\-broker " \fIHOST\fR"
+MQTT broker host name.
+.TP
+.BR \-p ", " \-\-port " \fIPORT\fR"
+MQTT broker port: usually 1883 without TLS, 8883 with TLS.
+.TP
+.BR \-u ", " \-\-username " \fIUSER\fR, " \-P ", " \-\-password " \fIPASS\fR"
+Broker account, if the broker asks for one. A password on the command line
+can be seen by other users of the computer: prefer a configuration file.
+.TP
+.B \-\-tls
+Encrypt the connection to the broker. The certificate is checked against
+the system's authorities, or
+.BR \-\-ca\-file .
+.TP
+.BI \-\-ca\-file " FILE"
+Certificate authorities to trust for TLS, for a broker with its own
+authority.
+.TP
+.B \-\-insecure
+Don't check the broker's certificate. For tests only.
+.TP
+.BR \-t ", " \-\-topic\-prefix " \fISTR\fR"
+MQTT topic prefix shared by the group (default
+.BR sts ).
+.TP
+.BI \-\-keepalive " SECS"
+Seconds between pings to the broker (30).
+.TP
+.BR \-n ", " \-\-nick " \fINICK\fR"
+Nickname: letters, digits and
+.B _ \- . [ ] { } ^ ` |
+up to 24 characters.
+.TP
+.BR \-r ", " \-\-room " \fIROOM\fR[:\fIPASS\fR]"
+Room to join, with its password if any. Can be repeated.
+.TP
+.BR \-i ", " \-\-identity " \fIFILE\fR"
+Identity key, created on first start.
+.TP
+.BR \-k ", " \-\-known\-peers " \fIFILE\fR"
+Fingerprints of the people met.
+.TP
+.B \-\-plain
+Line by line interface, no full screen.
+.TP
+.B \-\-log
+Keep a chat log in
+.BR ~/.sts/logs .
+.TP
+.BI \-\-max\-file\-size " SIZE"
+Largest file sent or accepted, with an optional K, M or G (16M).
+.TP
+.BR \-v ", " \-\-verbose
+Show protocol details.
+.TP
+.B \-\-init
+Create a configuration file, step by step, and the identity key with an
+optional passphrase.
+.TP
+.BI \-\-passphrase " FILE"
+Protect the identity key
+.I FILE
+with a passphrase, change it, or remove it (empty passphrase).
+.TP
+.BR \-V ", " \-\-version
+Print the version.
+.TP
+.BR \-h ", " \-\-help
+Print a short help.
+.SH CONFIGURATION FILE
+One
+.B key = value
+per line,
+.B #
+starts a comment. Relative paths are relative to the file,
+.B ~/
+is the home directory. Unknown keys and invalid values are errors, with
+the line number.
+.TP
+.BR broker ", " port
+The broker. Required.
+.TP
+.BR tls ", " tls_ca_file ", " tls_verify
+TLS to the broker:
+.BR yes / no ,
+a CA file, and
+.B tls_verify = no
+to skip the check (tests only).
+.TP
+.BR username ", " password
+Broker account, if needed.
+.TP
+.B topic_prefix
+Shared by everyone who wants to talk. Required.
+.TP
+.BR nick ", " identity ", " known_peers
+As the options above. Required.
+.TP
+.B room
+.IR NAME " or " "NAME PASSWORD" ,
+one line per room to join on start (up to 8).
+.TP
+.B rekey_interval
+Seconds between key renewals, 0 for never (600).
+.TP
+.B keepalive
+Seconds between pings (30).
+.TP
+.B ui
+.BR auto ,
+.B tui
+(full screen) or
+.B plain
+.RB ( auto ).
+.TP
+.B max_file_size
+Largest file sent or accepted, 1 byte to 64G (16M). Offers above it are
+refused automatically.
+.TP
+.BR log ", " log_dir
+.B log = yes
+keeps a plain text log of each room in
+.IR log_dir / ROOM .log
+(default
+.BR ~/.sts/logs ),
+private messages included. The log is not encrypted.
+.SH COMMANDS
+.TP
+.BI /join " ROOM " [ PASSWORD ]
+Join or create a room, in a new window. Room names ignore case.
+.TP
+.BI /part " " [ ROOM ]
+Leave the room.
+.TP
+.BI /msg " NICK TEXT"
+Private message to someone in the room.
+.TP
+.BI /me " TEXT"
+Action.
+.TP
+.BI /send " NICK FILE"
+Offer a file to someone in the room.
+.TP
+.BI /accept " " [ N "] [" DIR ]
+Accept file
+.IR N ,
+into
+.B ~/Downloads
+(your home directory if there is none) or
+.IR DIR .
+.TP
+.BI /refuse " " [ N ]
+Refuse file
+.IR N .
+.TP
+.BI /cancel " N"
+Stop transfer
+.IR N ,
+sending or receiving.
+.TP
+.B /files
+Transfers in progress.
+.TP
+.BI /nick " NICK"
+Change your nick.
+.TP
+.BR /who ", " /whois " \fINICK\fR"
+The people in the room; someone's fingerprint.
+.TP
+.BR /trust " \fINICK\fR, " /untrust " \fINICK\fR"
+Mark someone's key as verified, after comparing fingerprints outside of
+the chat; remove the mark.
+.TP
+.B /fingerprint
+Your own fingerprint.
+.TP
+.B /status
+Connection, MQTT topics and encryption.
+.TP
+.B /rekey
+Renew your keys now.
+.TP
+.BI /win " N"
+Go to window
+.IR N .
+.TP
+.BR /clear ", " /help ", " /quit
+Clear the window, list the commands, leave every room and exit.
+.SH KEYS
+Alt\-1 to Alt\-9 go to a window, Ctrl\-N and Ctrl\-P to the next and
+previous one. PgUp and PgDn scroll, Tab completes nicks and commands,
+Up and Down browse the history, Ctrl\-A, Ctrl\-E, Ctrl\-U, Ctrl\-K and
+Ctrl\-W edit the line, Ctrl\-C quits.
+.SH FILES
+.TP
+.B ~/.sts/identity.key
+Your identity key. Whoever has it can pass for you. Created readable by
+you only; protect it with
+.BR "sts \-\-passphrase" .
+.TP
+.B ~/.sts/known_peers
+Fingerprints of the people met, and which ones you verified.
+.TP
+.B ~/.sts/sts.conf
+The configuration made by
+.BR "sts \-\-init" .
+.TP
+.B ~/.sts/logs/
+Chat logs, with
+.BR "log = yes" .
+.SH SECURITY
+Messages, private messages and files are end-to-end encrypted
+(AES\-256\-GCM) and signed (ECDSA P\-256). Keys are renewed every 10
+minutes and whenever someone joins or leaves: a newcomer can't read what
+was said before, except in your first 10 seconds in a room.
+.PP
+Nicks can be taken by anyone, fingerprints can't. Compare fingerprints
+outside of the chat before trusting someone, then use
+.BR /trust :
+.B sts
+warns if that nick comes back with another key.
+.PP
+The broker can't read anything, but sees which topic is used, when, and
+how much, and can refuse to pass messages on. A room without a password is
+open to anyone who guesses its name. Whoever controls your computer can
+read everything.
+.SH EXAMPLES
+A public broker without TLS:
+.PP
+.RS
+.EX
+sts \-b broker.emqx.io \-p 1883 \-t wonderland \-n kira \-r neotokyo
+.EE
+.RE
+.PP
+Your own mosquitto with TLS and its own authority:
+.PP
+.RS
+.EX
+sts \-b localhost \-p 8883 \-\-tls \-\-ca\-file ca.crt \\
+    \-n kira \-r neotokyo
+.EE
+.RE
+.PP
+A message from a script:
+.PP
+.RS
+.EX
+(sleep 3; echo "deploy finished"; echo /quit) | sts \-c bot.conf
+.EE
+.RE
+.SH EXIT STATUS
+0 on success, 1 on errors.
+.SH SEE ALSO
+.BR mosquitto (8)
+.PP
+https://github.com/ifupauline/sts
